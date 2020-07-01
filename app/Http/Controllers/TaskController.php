@@ -9,7 +9,7 @@ use Illuminate\Http\Request;
 class TaskController extends Controller
 {
     public function index(int $id)
-{
+    {
     // すべてのフォルダを取得する
     $folders = Folder::all();
 
@@ -24,5 +24,15 @@ class TaskController extends Controller
         'current_folder_id' => $current_folder->id,
         'tasks' => $tasks,
     ]);
-}
+    }
+    
+    /**
+     * GET /folders/{id}/tasks/create
+     */
+    public function showCreateForm(int $id)
+    {
+    return view('tasks/create', [
+        'folder_id' => $id
+    ]);
+    }
 }

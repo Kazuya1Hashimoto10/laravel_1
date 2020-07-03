@@ -38,7 +38,7 @@ class TaskController extends Controller
     }
 
     public function create(int $id, CreateTask $request)
-{
+    {
     $current_folder = Folder::find($id);
 
     $task = new Task();
@@ -50,5 +50,14 @@ class TaskController extends Controller
     return redirect()->route('tasks.index', [
         'id' => $current_folder->id,
     ]);
-}
+    }
+
+    public function showEditForm(int $id, int $task_id)
+    {
+    $task = Task::find($task_id);
+
+    return view('tasks/edit', [
+        'task' => $task,
+    ]);
+    }
 }

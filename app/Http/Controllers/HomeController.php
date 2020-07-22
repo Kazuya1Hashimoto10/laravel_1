@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Http\Controllers;
-
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -21,8 +20,6 @@ class HomeController extends Controller
         }
 
         // フォルダがあればそのフォルダのタスク一覧にリダイレクトする
-        return redirect()->route('tasks.index', [
-            'id' => $folder->id,
-        ]);
+        return redirect()->route('tasks.index', [ 'folder' => $folder ->id]);
     }
 }

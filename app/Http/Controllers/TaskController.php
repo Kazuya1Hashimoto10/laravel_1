@@ -68,4 +68,11 @@ class TaskController extends Controller
         'folder' => $task->folder_id,
     ]);
     }
+
+    private function checkRelation(Folder $folder, Task $task)
+    {
+    if ($folder->id !== $task->folder_id) {
+        abort(404);
+    }
+    }
 }

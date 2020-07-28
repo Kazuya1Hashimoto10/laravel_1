@@ -51,6 +51,11 @@
                 </td>
                 <td>{{ $task->formatted_due_date }}</td>
                 <td><a href="{{ route('tasks.edit', ['folder' => $task->folder_id, 'task' => $task->id]) }}">編集</a></td>
+                <td><form action="{{ route('tasks.delete', ['folder' => $task->folder_id, 'task' => $task->id]) }}" method='post'>
+                  @csrf
+                  @method('DELETE')
+                <button type="submit" value="delete" class="btn btn-primary">削除</button>
+                </form></td>
               </tr>
             @endforeach
             </tbody>

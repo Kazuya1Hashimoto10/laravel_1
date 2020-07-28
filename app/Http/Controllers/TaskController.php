@@ -69,6 +69,13 @@ class TaskController extends Controller
     ]);
     }
 
+    public function destroy(Folder $folder, Task $task)
+    {
+    $task->delete();
+
+    return redirect('/');
+    }
+
     private function checkRelation(Folder $folder, Task $task)
     {
     if ($folder->id !== $task->folder_id) {

@@ -25,7 +25,13 @@ class FolderController extends Controller
     Auth::user()->folders()->save($folder);
 
     return redirect()->route('tasks.index', 
-        ['id' => $folder->id,]);
+        ['folder' => $folder->id,]);
+    }
+
+    public function showEditForm(Folder $folder){
+        return view('folders/edit', [
+            'folder' => $folder,
+        ]);
     }
 
 }

@@ -7,6 +7,9 @@
         <nav class="panel panel-default">
           <div class="panel-heading">フォルダ</div>
           <div class="panel-body">
+            <a href="{{ route('folders.edit', $current_folder_id) }}" class="btn btn-default btn-block">
+              フォルダ名を変更する
+            </a>
             <a href="{{ route('folders.create') }}" class="btn btn-default btn-block">
               フォルダを追加する
             </a>
@@ -39,6 +42,7 @@
               <th>タイトル</th>
               <th>状態</th>
               <th>期限</th>
+              <th></th>
               <th></th>
             </tr>
             </thead>

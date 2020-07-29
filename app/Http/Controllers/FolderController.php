@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Folder;
 use App\Http\Requests\CreateFolder;
+use App\Http\Requests\EditFolder;
 use Illuminate\Support\Facades\Auth;
 
 class FolderController extends Controller
@@ -31,6 +32,15 @@ class FolderController extends Controller
     public function showEditForm(Folder $folder){
         return view('folders/edit', [
             'folder' => $folder,
+        ]);
+    }
+
+    public function edit(Folder $folder, EditFolder $request){
+        $folder->title = $request->title;
+        $folder->save();
+
+        return redirect()->route('tasks.index',[
+            'folder' => $folder->id,
         ]);
     }
 

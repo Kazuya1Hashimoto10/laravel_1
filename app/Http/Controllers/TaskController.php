@@ -19,10 +19,50 @@ class TaskController extends Controller
     // 選ばれたフォルダに紐づくタスクを取得する
     $tasks = $folder->tasks()->get();
 
+    // タスクの達成状況を出す
+    $progress_num = 0;
+    $count = 0;
+    foreach ($tasks as $task){
+        $count += 1;
+         switch ($task->status){
+            case '1';
+                $progress_num += 1;
+                break;
+            case '2';
+                $progress_num += 2;
+                break;
+            case '3';
+                $progress_num += 3;
+                break;
+         }
+    }
+
+    if($count != 0){
+        $progress = $progress_num / $count;
+    
+        if($progress == 1){
+            $situation = "進捗率 0%";
+        }elseif($progress < 1.5){
+            $situation = "進捗率 20%";
+        }elseif($progress < 2){
+            $situation = "進捗率 40%";
+        }elseif($progress < 2.5){
+            $situation = "進捗率 60%";
+        }elseif($progress < 3){
+            $situation = "進捗率 80%";
+        }elseif($progress == 3){
+            $situation = "進捗率 100%";
+        }
+    }else{
+        $situation = "タスクなし";
+    }
+
+
     return view('tasks/index', [
         'folders' => $folders,
         'current_folder_id' => $folder->id,
         'tasks' => $tasks,
+        'situation' => $situation,
     ]);
     }
     

@@ -33,7 +33,7 @@
       </div>
       <div class="column col-md-8">
         <div class="panel panel-default">
-          <div class="panel-heading">タスク</div>
+          <div class="panel-heading">タスク（{{ $situation }}）</div>
           <div class="panel-body">
             <div class="text-right">
               <a href="{{ route('tasks.create', ['folder' => $folder->id]) }}" class="btn btn-default btn-block">

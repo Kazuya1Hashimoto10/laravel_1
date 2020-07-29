@@ -7,6 +7,7 @@ use App\Folder;
 use App\Http\Requests\CreateFolder;
 use App\Http\Requests\EditFolder;
 use Illuminate\Support\Facades\Auth;
+use App\Task;
 
 class FolderController extends Controller
 {
@@ -42,6 +43,15 @@ class FolderController extends Controller
         return redirect()->route('tasks.index',[
             'folder' => $folder->id,
         ]);
+    }
+
+    public function destroy(Folder $folder)
+    {
+        $tasks = \App\Task::where('folder_id',$folder->id);
+        $tasks->delete();
+        $folder->delete();
+
+        return redirect('/');
     }
 
 }

@@ -13,6 +13,11 @@
             <a href="{{ route('folders.create') }}" class="btn btn-default btn-block">
               フォルダを追加する
             </a>
+            <form action="{{ route('folders.delete', $current_folder_id) }}" method='post'>
+              @csrf
+              @method('DELETE')
+              <button type="submit" value="delete" class="btn btn-default btn-block">フォルダを削除する</button>
+            </form>
           </div>
           <div class="list-group">
             @foreach($folders as $folder)

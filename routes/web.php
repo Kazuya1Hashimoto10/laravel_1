@@ -20,9 +20,13 @@ Route::group(['middleware' => 'auth'], function() {
   Route::post('/folders/create', 'FolderController@create');
 
   Route::group(['middleware' => 'can:view,folder'], function(){
+    // フォルダ系
     Route::get('/folders/{folder}/edit', 'FolderController@showEditForm')->name('folders.edit');
     Route::post('/folders/{folder}/edit', 'FolderController@edit');
 
+    Route::delete('/folders/{folder}/delete', 'FolderController@destroy')->name('folders.delete');
+
+    // タスク系
     Route::get('/folders/{folder}/tasks', 'TaskController@index')->name('tasks.index');
     
     Route::get('/folders/{folder}/tasks/create', 'TaskController@showCreateForm')->name('tasks.create');
